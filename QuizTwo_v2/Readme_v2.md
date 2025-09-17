@@ -5,7 +5,7 @@ Incluye CRUDs completos, un reporte por área y un frontend en React para intera
 
 ---
 
-## 🧭 Objetivo
+##  Objetivo
 
 - Modelar la planta física del colegio (Áreas, Oficinas, Salones).
 - Administrar empleados:
@@ -19,7 +19,7 @@ Incluye CRUDs completos, un reporte por área y un frontend en React para intera
 
 ---
 
-## 🧱 Tecnologías
+##  Tecnologías
 
 ### Backend
 - Java 21
@@ -36,7 +36,7 @@ Incluye CRUDs completos, un reporte por área y un frontend en React para intera
 
 ---
 
-## 📂 Estructura
+##  Estructura
 
 ```
 QuizTwoV2/
@@ -63,7 +63,7 @@ QuizTwoV2/
 
 ---
 
-## ⚙️ Requisitos
+##  Requisitos
 
 - **JDK 21**
 - **Maven 3.9+**
@@ -71,7 +71,7 @@ QuizTwoV2/
 
 ---
 
-## 🚀 Cómo ejecutar
+##  Cómo ejecutar
 
 ### Backend
 
@@ -138,7 +138,7 @@ Abrir en `http://localhost:5173`.
 
 ---
 
-## 🔗 Endpoints principales
+##  Endpoints principales
 
 ### Áreas `/areas`
 | Método | Ruta            | Descripción | Body ejemplo |
@@ -206,7 +206,7 @@ Ejemplo de respuesta:
 
 ---
 
-## 🧰 Manejo de errores
+##  Manejo de errores
 
 Formato de error estándar en JSON:
 
@@ -231,7 +231,7 @@ Formato de error estándar en JSON:
 
 ---
 
-## 📈 Mejoras posibles
+##  Mejoras posibles
 
 - Paginación y filtros en listas.
 - Exportar reporte en CSV.
@@ -241,7 +241,7 @@ Formato de error estándar en JSON:
 
 ---
 
-## 📷 Diagramas
+##  Diagramas
 
 ### Diagrama de Clases — Modelo de Dominio
 ```mermaid

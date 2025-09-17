@@ -1,0 +1,95 @@
+.board {
+    width: var(--board-size);
+    height: var(--board-size);
+    display: grid;
+    grid-template-columns: repeat(var(--n), 1fr);
+    grid-template-rows: repeat(var(--n), 1fr);
+    gap: var(--cell-gap);
+    background:#000;
+    border: var(--thick) solid var(--fg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px #0008;
+}
+
+.cell {
+    position: relative;
+    display: grid;
+    place-items: center;
+    border: var(--thin) solid #444; /* líneas finas por defecto */
+    background: #181818;
+    font-size: clamp(12px, calc(48px / (var(--n) / 9)), 28px); /* adapta el tamaño del texto a N */
+    line-height: 1;
+}
+
+/* Estilos dinámicos para bordes gruesos */
+.seg-top {
+    border-top: var(--thick) solid var(--fg) !important;
+}
+
+.seg-left {
+    border-left: var(--thick) solid var(--fg) !important;
+}
+
+.seg-right {
+    border-right: var(--thick) solid var(--fg) !important;
+}
+
+.seg-bottom {
+    border-bottom: var(--thick) solid var(--fg) !important;
+}
+
+/* Input dentro de cada celda */
+.cell input {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: transparent;
+    color: var(--fg);
+    border: none;
+    outline: none;
+    font: inherit;
+    caret-color: var(--accent);
+}
+
+/* Hover / enfoque para facilidad visual (opcional) */
+.cell:focus-within {
+    background: #202020;
+}
+
+/* Estilos para los inputs de r y c */
+.segment-input {
+    width: 64px;
+}
+
+/* Estilo para el símbolo de multiplicación */
+.segment-multiplier {
+    opacity: .7;
+}
+
+/* Colores específicos para cada número (1-25) */
+.cell input[value="1"]  { box-shadow: inset 0 0 0 3px #e53935; background: rgba(229, 57, 53, 0.15); }
+.cell input[value="2"]  { box-shadow: inset 0 0 0 3px #d81b60; background: rgba(216, 27, 96, 0.15); }
+.cell input[value="3"]  { box-shadow: inset 0 0 0 3px #8e24aa; background: rgba(142, 36, 170, 0.15); }
+.cell input[value="4"]  { box-shadow: inset 0 0 0 3px #5e35b1; background: rgba(94, 53, 177, 0.15); }
+.cell input[value="5"]  { box-shadow: inset 0 0 0 3px #3949ab; background: rgba(57, 73, 171, 0.15); }
+.cell input[value="6"]  { box-shadow: inset 0 0 0 3px #1e88e5; background: rgba(30, 136, 229, 0.15); }
+.cell input[value="7"]  { box-shadow: inset 0 0 0 3px #039be5; background: rgba(3, 155, 229, 0.15); }
+.cell input[value="8"]  { box-shadow: inset 0 0 0 3px #00acc1; background: rgba(0, 172, 193, 0.15); }
+.cell input[value="9"]  { box-shadow: inset 0 0 0 3px #00897b; background: rgba(0, 137, 123, 0.15); }
+.cell input[value="10"] { box-shadow: inset 0 0 0 3px #43a047; background: rgba(67, 160, 71, 0.15); }
+.cell input[value="11"] { box-shadow: inset 0 0 0 3px #7cb342; background: rgba(124, 179, 66, 0.15); }
+.cell input[value="12"] { box-shadow: inset 0 0 0 3px #c0ca33; background: rgba(192, 202, 51, 0.15); }
+.cell input[value="13"] { box-shadow: inset 0 0 0 3px #fdd835; background: rgba(253, 216, 53, 0.15); }
+.cell input[value="14"] { box-shadow: inset 0 0 0 3px #ffb300; background: rgba(255, 179, 0, 0.15); }
+.cell input[value="15"] { box-shadow: inset 0 0 0 3px #fb8c00; background: rgba(251, 140, 0, 0.15); }
+.cell input[value="16"] { box-shadow: inset 0 0 0 3px #f4511e; background: rgba(244, 81, 30, 0.15); }
+.cell input[value="17"] { box-shadow: inset 0 0 0 3px #6d4c41; background: rgba(109, 76, 65, 0.15); }
+.cell input[value="18"] { box-shadow: inset 0 0 0 3px #757575; background: rgba(117, 117, 117, 0.15); }
+.cell input[value="19"] { box-shadow: inset 0 0 0 3px #546e7a; background: rgba(84, 110, 122, 0.15); }
+.cell input[value="20"] { box-shadow: inset 0 0 0 3px #ef5350; background: rgba(239, 83, 80, 0.15); }
+.cell input[value="21"] { box-shadow: inset 0 0 0 3px #ab47bc; background: rgba(171, 71, 188, 0.15); }
+.cell input[value="22"] { box-shadow: inset 0 0 0 3px #42a5f5; background: rgba(66, 165, 245, 0.15); }
+.cell input[value="23"] { box-shadow: inset 0 0 0 3px #26c6da; background: rgba(38, 198, 218, 0.15); }
+.cell input[value="24"] { box-shadow: inset 0 0 0 3px #66bb6a; background: rgba(102, 187, 106, 0.15); }
+.cell input[value="25"] { box-shadow: inset 0 0 0 3px #ffee58; background: rgba(255, 238, 88, 0.15); }

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sudoku dinámico (4×4, 9×9, 16×16, 32×32)</title>
+    <link href="/root.css" rel="stylesheet" type="text/css">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <link href="/menu.css" rel="stylesheet" type="text/css">
+    <link href="/board.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="wrap">
+    <div class="toolbar">
+        <label for="size">Tamaño:</label>
+        <select id="size">
+            <option value="4">4 × 4</option>
+            <option value="9">9 × 9</option>
+            <option value="16">16 × 16</option>
+            <option value="25">25 × 25</option>
+        </select>
+        <button id="build">Crear tablero</button>
+    </div>
+</div>
+
+<script>
+    const sizeSel = document.getElementById('size');
+    const buildBtn = document.getElementById('build');
+    buildBtn.addEventListener('click', () => {
+        const n = parseInt(sizeSel.value, 10);
+        window.location.href = `/sudoku/${n}`;
+    });
+</script>
+</body>
+</html>

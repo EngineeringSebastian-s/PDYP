@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sudoku [[${size}]]×[[${size}]]</title>
+    <link href="/root.css" rel="stylesheet" type="text/css">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <link href="/menu.css" rel="stylesheet" type="text/css">
+    <link href="/board.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="wrap">
+    <div class="toolbar">
+        <label for="size">Tamaño:</label>
+        <select id="size">
+            <option value="4" th:selected="${size == 4}">4 × 4</option>
+            <option value="9" th:selected="${size == 9}">9 × 9</option>
+            <option value="16" th:selected="${size == 16}">16 × 16</option>
+            <option value="25" th:selected="${size == 25}">25 × 25</option>
+        </select>
+
+        <span>Segmento r×c:</span>
+        <label for="r"></label><input id="r" type="number" min="1" th:value="${r}" class="segment-input" />
+        <span style="opacity:.7">×</span>
+        <label for="c"></label><input id="c" type="number" min="1" th:value="${c}" class="segment-input" />
+
+        <button id="build">Crear tablero</button>
+        <button id="solve">Solucionar</button>
+        <button id="clear">Limpiar</button>
+    </div>
+    <div class="board" th:style="'--n:' + ${cols} +';'">
+        <th:block th:each="row, rowStat : ${board}">
+            <th:block th:each="cell, colStat : ${row}">
+                <div th:class="'cell ' +
+                  (${rowStat.index} % ${r} == 0 ? 'seg-top ' : '') +
+                  (${colStat.index} % ${c} == 0 ? 'seg-left ' : '') +
+                  (${colStat.index} % ${c} == ${c}-1 ? 'seg-right ' : '') +
+                  (${rowStat.index} % ${r} == ${r}-1 ? 'seg-bottom ' : '') +
+                  (${rowStat.index} == ${rows}-1 ? 'seg-bottom ' : '') +
+                  (${colStat.index} == ${cols}-1 ? 'seg-right ' : '')">
+                    <input inputmode="numeric"
+                           maxlength="1"
+                           th:data-col="${colStat.index+1}"
+                           th:data-row="${rowStat.index+1}"
+                           th:id="'cell-' + ${rowStat.index+1} + '-' + ${colStat.index+1}"
+                           th:value="${cell}" type="text">
+                </div>
+            </th:block>
+        </th:block>
+    </div>
+</div>
+<script>
+    const sizeSel = document.getElementById('size');
+    const buildBtn = document.getElementById('build');
+    const solveBtn = document.getElementById('solve');
+    const clearBtn = document.getElementById('clear');
+    buildBtn.addEventListener('click', () => {
+        const n = parseInt(sizeSel.value, 10);
+        window.location.href = `/sudoku/${n}`;
+    });
+
+    solveBtn.addEventListener('click', () => {
+        const n = parseInt(sizeSel.value, 10);
+        window.location.href = `/sudoku/${n}/resolver`;
+    });
+    clearBtn.addEventListener('click', () => {
+        const n = parseInt(sizeSel.value, 10);
+        window.location.href = `/sudoku/${n}`;
+    });
+</script>
+</body>
+</html>

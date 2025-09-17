@@ -1,0 +1,14 @@
+ ,---.             ,--.       ,--.             ,---.         ,--.
+'   .-' ,--.,--. ,-|  | ,---. |  |,-.,--.,--. '   .-'  ,---. |  |,--.  ,--.,---. ,--.--.
+`.  `-. |  ||  |' .-. || .-. ||     /|  ||  | `.  `-. | .-. ||  | \  `'  /| .-. :|  .--'
+.-'    |'  ''  '\ `-' |' '-' '|  \  \'  ''  ' .-'    |' '-' '|  |  \    / \   --.|  |
+`-----'  `----'  `---'  `---' `--'`--'`----'  `-----'  `---' `--'   `--'   `----'`--'
+
+Author: ${application.author}
+Application: ${application.title} ${application.version}
+Technologies Used:
+ - Spring Boot (Java 21)
+ - Thymeleaf
+ - JavaScript
+ - Redis
+Powered by Spring Boot ${spring-boot.version}

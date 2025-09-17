@@ -1,0 +1,9 @@
+:root {
+    --board-size: min(92vmin, 720px);
+    --cell-gap: 0;
+    --thin: 1px;
+    --thick: 3px;
+    --bg: #111;
+    --fg: #f5f5f5;
+    --accent: #4dd0e1;
+}

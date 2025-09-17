@@ -14,7 +14,6 @@ public class WebCorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration cfg = new CorsConfiguration();
-        // Cambia el puerto si tu Vite corre en otro (por defecto 5173)
         cfg.setAllowedOrigins(List.of("http://localhost:5173"));
         cfg.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         cfg.setAllowedHeaders(List.of("Content-Type", "Authorization"));

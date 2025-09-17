@@ -64,7 +64,7 @@ public class DataSeeder {
             adm2.setOficina(o101);
             adminRepo.save(adm2);
 
-            System.out.println("✅ Datos iniciales insertados en la BD H2");
+            System.out.println("Datos iniciales insertados en la BD H2");
         };
     }
 }

@@ -1,0 +1,14 @@
+a { text-decoration: none; }
+button, input, select { padding: 8px; }
+table { background: #fff; }
+thead th { font-weight: 600; }
+tbody tr:hover { background: #fafafa; }
+body { background:#f6f7f9; color:#222; }
+a { text-decoration:none; color:#0b6; }
+a:hover { text-decoration:underline; }
+button { cursor:pointer; background:#0b6; color:#fff; border:none; border-radius:6px; padding:8px 12px; }
+button:hover { opacity:.9; }
+input, select { border:1px solid #ccc; border-radius:6px; padding:8px; width:100%; }
+table { background:#fff; border-radius:10px; overflow:hidden; }
+thead th { background:#f0f2f5; }
+tbody tr:hover { background:#fafafa; }

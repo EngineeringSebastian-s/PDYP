@@ -9,13 +9,13 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
-        <module name="colegio" />
+        <module name="Cambridge-API" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="colegio" options="-parameters" />
+      <module name="Cambridge-API" options="-parameters" />
     </option>
   </component>
 </project>

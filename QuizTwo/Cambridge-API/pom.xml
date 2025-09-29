@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
     <groupId>co.cambridge</groupId>
-    <artifactId>colegio</artifactId>
+    <artifactId>Cambridge-API</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>colegio</name>
     <description>Demo project for Spring Boot</description>

@@ -103,7 +103,7 @@ spring.profiles.active=dev
 Arrancar el backend:
 
 ```bash
-cd colegio
+cd Cambridge-API
 ./mvnw spring-boot:run
 ```
 
@@ -129,7 +129,7 @@ VITE_API_BASE=http://localhost:8080
 Ejecutar:
 
 ```bash
-cd colegio-frontend
+cd Cambridge-Web
 npm install
 npm run dev
 ```

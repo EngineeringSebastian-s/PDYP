@@ -1,7 +1,7 @@
 package co.cambridge.colegio.Controller;
 
-import co.cambridge.colegio.Service.SalonService;
 import co.cambridge.colegio.Model.DTO.SalonDTO;
+import co.cambridge.colegio.Service.SalonService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

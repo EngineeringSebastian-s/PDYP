@@ -1,6 +1,7 @@
 package co.cambridge.colegio.Service;
 
 import co.cambridge.colegio.Model.DTO.SalonDTO;
+
 import java.util.List;
 
 public interface SalonService {

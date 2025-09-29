@@ -5,7 +5,8 @@ import strawberry
 
 from models import Area, Empleado, Oficina, Salon, AreaEmpleadosReport
 
-BASE_URL = "http://localhost:8080/api"  
+BASE_URL = "http://localhost:8080/api"
+
 
 @strawberry.type
 class Query:
@@ -47,6 +48,7 @@ class Query:
     def areas_empleados_report(self) -> List[AreaEmpleadosReport]:
         response = httpx.get(f"{BASE_URL}/reportes/areas-empleados")
         return [AreaEmpleadosReport(**item) for item in response.json()]
+
 
 @strawberry.type
 class Mutation:

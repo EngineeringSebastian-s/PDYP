@@ -1,5 +1,3 @@
-import httpx
-import strawberry
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
 
@@ -7,11 +5,13 @@ from schema import *
 
 BASE_URL = "http://localhost:8080/api"
 
+
 # ======== MODELOS (DTOs equivalentes) ==========
 @strawberry.type
 class Area:
     id: int
     nombre: str
+
 
 @strawberry.type
 class Empleado:
@@ -19,20 +19,24 @@ class Empleado:
     nombre: str
     documento: str
 
+
 @strawberry.type
 class Oficina:
     id: int
     codigo: str
+
 
 @strawberry.type
 class Salon:
     id: int
     codigo: str
 
+
 @strawberry.type
 class AreaEmpleadosReport:
     area: str
     cantidad_empleados: int
+
 
 # ========== QUERIES ========================
 @strawberry.type
@@ -81,6 +85,7 @@ class Query:
         r = httpx.get(f"{BASE_URL}/reportes/areas-empleados")
         return [AreaEmpleadosReport(**rep) for rep in r.json()]
 
+
 # ========== MUTATIONS ========================
 @strawberry.type
 class Mutation:
@@ -99,11 +104,22 @@ class Mutation:
         r = httpx.delete(f"{BASE_URL}/areas/{id}")
         return r.status_code == 204
 
+
 # ========== CONFIGURACIÓN FASTAPI ============
 schema = strawberry.Schema(query=Query, mutation=Mutation)
 graphql_app = GraphQLRouter(schema)
 
-app = FastAPI()
+app = FastAPI(
+    title="Colegio Cambridge GraphQL API",
+    description="API Gateway con GraphQL sobre REST (Spring Boot + H2)",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc"
+)
 graphql_app = GraphQLRouter(schema)
 
 app.include_router(graphql_app, prefix="/graphql")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="127.0.0.1", port=8081, reload=True)

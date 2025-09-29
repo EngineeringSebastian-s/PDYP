@@ -1,48 +1,28 @@
 
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+import strawberry
 
-DATABASE_URL = "sqlite:///./test.db"
+@strawberry.type
+class Area:
+    id: int
+    nombre: str
 
-# Crear base
-Base = declarative_base()
+@strawberry.type
+class Empleado:
+    id: int
+    nombre: str
+    documento: str
 
-# Crear el motor de la base de datos
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+@strawberry.type
+class Oficina:
+    id: int
+    codigo: str
 
-# Crear una sesión de base de datos
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+@strawberry.type
+class Salon:
+    id: int
+    codigo: str
 
-# clases de los modelos
-class Area(Base):
-    __tablename__ = "areas"
-
-    id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String, index=True)
-
-    empleados = relationship("Empleado", back_populates="area")
-
-class Empleado(Base):
-    __tablename__ = "empleados"
-
-    id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String, index=True)
-    documento = Column(String, unique=True, index=True)
-    area_id = Column(Integer, ForeignKey("areas.id"))
-
-    area = relationship("Area", back_populates="empleados")
-
-# Crear todas las tablas en la base de datos
-Base.metadata.create_all(bind=engine)
-
-# sesión de base de datos
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-# Sesión global
-db_session = SessionLocal()
+@strawberry.type
+class AreaEmpleadosReport:
+    area: str
+    cantidad_empleados: int

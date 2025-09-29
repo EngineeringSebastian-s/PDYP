@@ -1,4 +1,4 @@
-import { http } from "./http";
+import {http} from "./http";
 
 export const getAreas = () => http.get("/api/areas").then(r => r.data);
 export const getArea = (id) => http.get(`/api/areas/${id}`).then(r => r.data);

@@ -1,0 +1,55 @@
+# Test GraphQL API del Colegio de Cambridge
+
+### Consulta todas las áreas
+
+POST http://127.0.0.1:8000/graphql
+Content-Type: application/json
+
+{
+"query": "{ areas { id nombre } }"
+}
+
+### Consulta un área específica por ID
+
+POST http://127.0.0.1:8000/graphql
+Content-Type: application/json
+
+{
+"query": "{ area(id: 1) { id nombre } }"
+}
+
+### Consulta todos los empleados
+
+POST http://127.0.0.1:8000/graphql
+Content-Type: application/json
+
+{
+"query": "{ empleados { id nombre documento } }"
+}
+
+### Crear un área
+
+POST http://127.0.0.1:8000/graphql
+Content-Type: application/json
+
+{
+"query": "mutation { crearArea(nombre: \"Ciencias\") { id nombre } }"
+}
+
+### Actualizar un área
+
+POST http://127.0.0.1:8000/graphql
+Content-Type: application/json
+
+{
+"query": "mutation { actualizarArea(id: 1, nombre: \"Matemáticas\") { id nombre } }"
+}
+
+### Eliminar un área
+
+POST http://127.0.0.1:8000/graphql
+Content-Type: application/json
+
+{
+"query": "mutation { eliminarArea(id: 1) }"
+}

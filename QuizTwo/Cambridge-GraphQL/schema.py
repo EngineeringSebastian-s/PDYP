@@ -1,8 +1,9 @@
-# schema.py
-import strawberry
 from typing import List, Optional
-from models import Area, Empleado, Oficina, Salon, AreaEmpleadosReport
+
 import httpx
+import strawberry
+
+from models import Area, Empleado, Oficina, Salon, AreaEmpleadosReport
 
 BASE_URL = "http://localhost:8080/api"  
 

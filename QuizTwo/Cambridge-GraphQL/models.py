@@ -1,4 +1,3 @@
-
 import strawberry
 
 @strawberry.type

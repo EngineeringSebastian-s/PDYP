@@ -1,12 +1,11 @@
+import httpx
 import strawberry
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
-import httpx
-from typing import List, Optional
+
 from schema import *
 
-
-BASE_URL = "http://localhost:8080/api"  
+BASE_URL = "http://localhost:8080/api"
 
 # ======== MODELOS (DTOs equivalentes) ==========
 @strawberry.type

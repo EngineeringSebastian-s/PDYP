@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
 
-from schema import *
+from app.schemas.schema import *
 
 BASE_URL = "http://localhost:8080/api"
 

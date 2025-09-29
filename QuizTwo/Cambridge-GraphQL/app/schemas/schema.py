@@ -3,7 +3,7 @@ from typing import List, Optional
 import httpx
 import strawberry
 
-from models import Area, Empleado, Oficina, Salon, AreaEmpleadosReport
+from app.models.models import Area, Empleado, Oficina, Salon, AreaEmpleadosReport
 
 BASE_URL = "http://localhost:8080/api"
 

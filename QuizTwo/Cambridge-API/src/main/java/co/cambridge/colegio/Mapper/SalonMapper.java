@@ -1,7 +1,7 @@
 package co.cambridge.colegio.Mapper;
 
-import co.cambridge.colegio.Model.Entity.Salon;
 import co.cambridge.colegio.Model.DTO.SalonDTO;
+import co.cambridge.colegio.Model.Entity.Salon;
 
 public class SalonMapper {
     public static SalonDTO toDTO(Salon s) {

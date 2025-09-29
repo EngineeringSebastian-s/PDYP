@@ -1,9 +1,9 @@
 package co.cambridge.colegio.Mapper;
 
+import co.cambridge.colegio.Model.DTO.EmpleadoDTO;
 import co.cambridge.colegio.Model.Entity.Administrativo;
 import co.cambridge.colegio.Model.Entity.Empleado;
 import co.cambridge.colegio.Model.Entity.Profesor;
-import co.cambridge.colegio.Model.DTO.EmpleadoDTO;
 
 public class EmpleadoMapper {
 

@@ -1,21 +1,13 @@
 package co.cambridge.colegio.Service.impl;
 
-import co.cambridge.colegio.Model.Entity.Administrativo;
-import co.cambridge.colegio.Model.Entity.Area;
-import co.cambridge.colegio.Model.Entity.Empleado;
-import co.cambridge.colegio.Model.Entity.Oficina;
-import co.cambridge.colegio.Model.Entity.Profesor;
-import co.cambridge.colegio.Model.Entity.enums.TipoProfesor;
-import co.cambridge.colegio.Repository.AdministrativoRepository;
-import co.cambridge.colegio.Repository.AreaRepository;
-import co.cambridge.colegio.Repository.EmpleadoRepository;
-import co.cambridge.colegio.Repository.OficinaRepository;
-import co.cambridge.colegio.Repository.ProfesorRepository;
-import co.cambridge.colegio.Service.EmpleadoService;
-import co.cambridge.colegio.Model.DTO.EmpleadoCreateDTO;
-import co.cambridge.colegio.Model.DTO.EmpleadoDTO;
 import co.cambridge.colegio.Exception.NotFoundException;
 import co.cambridge.colegio.Mapper.EmpleadoMapper;
+import co.cambridge.colegio.Model.DTO.EmpleadoCreateDTO;
+import co.cambridge.colegio.Model.DTO.EmpleadoDTO;
+import co.cambridge.colegio.Model.Entity.*;
+import co.cambridge.colegio.Model.Entity.enums.TipoProfesor;
+import co.cambridge.colegio.Repository.*;
+import co.cambridge.colegio.Service.EmpleadoService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,10 +24,10 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     private final OficinaRepository oficinaRepo;
 
     public EmpleadoServiceImpl(EmpleadoRepository empleadoRepo,
-            ProfesorRepository profesorRepo,
-            AdministrativoRepository adminRepo,
-            AreaRepository areaRepo,
-            OficinaRepository oficinaRepo) {
+                               ProfesorRepository profesorRepo,
+                               AdministrativoRepository adminRepo,
+                               AreaRepository areaRepo,
+                               OficinaRepository oficinaRepo) {
         this.empleadoRepo = empleadoRepo;
         this.profesorRepo = profesorRepo;
         this.adminRepo = adminRepo;

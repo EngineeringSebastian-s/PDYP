@@ -1,7 +1,7 @@
 package co.cambridge.colegio.Controller;
 
-import co.cambridge.colegio.Service.AreaService;
 import co.cambridge.colegio.Model.DTO.AreaDTO;
+import co.cambridge.colegio.Service.AreaService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

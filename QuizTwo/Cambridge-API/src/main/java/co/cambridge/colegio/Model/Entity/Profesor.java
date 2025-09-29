@@ -2,7 +2,10 @@ package co.cambridge.colegio.Model.Entity;
 
 import co.cambridge.colegio.Model.Entity.enums.TipoProfesor;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @DiscriminatorValue("PROFESOR")

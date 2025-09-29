@@ -1,5 +1,6 @@
 package co.cambridge.colegio.Service.impl;
 
+import co.cambridge.colegio.Model.DTO.report.AreaEmpleadosReportDTO;
 import co.cambridge.colegio.Model.Entity.Area;
 import co.cambridge.colegio.Model.Entity.enums.TipoProfesor;
 import co.cambridge.colegio.Repository.AdministrativoRepository;
@@ -7,7 +8,6 @@ import co.cambridge.colegio.Repository.AreaRepository;
 import co.cambridge.colegio.Repository.EmpleadoRepository;
 import co.cambridge.colegio.Repository.ProfesorRepository;
 import co.cambridge.colegio.Service.ReportService;
-import co.cambridge.colegio.Model.DTO.report.AreaEmpleadosReportDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,9 +23,9 @@ public class ReportServiceImpl implements ReportService {
     private final AdministrativoRepository adminRepo;
 
     public ReportServiceImpl(AreaRepository areaRepo,
-            EmpleadoRepository empleadoRepo,
-            ProfesorRepository profesorRepo,
-            AdministrativoRepository adminRepo) {
+                             EmpleadoRepository empleadoRepo,
+                             ProfesorRepository profesorRepo,
+                             AdministrativoRepository adminRepo) {
         this.areaRepo = areaRepo;
         this.empleadoRepo = empleadoRepo;
         this.profesorRepo = profesorRepo;

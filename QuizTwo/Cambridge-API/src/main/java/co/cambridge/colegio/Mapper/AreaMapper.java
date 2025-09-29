@@ -1,7 +1,7 @@
 package co.cambridge.colegio.Mapper;
 
-import co.cambridge.colegio.Model.Entity.Area;
 import co.cambridge.colegio.Model.DTO.AreaDTO;
+import co.cambridge.colegio.Model.Entity.Area;
 
 public class AreaMapper {
     public static AreaDTO toDTO(Area a) {

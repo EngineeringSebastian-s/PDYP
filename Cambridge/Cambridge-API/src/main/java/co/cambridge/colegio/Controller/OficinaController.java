@@ -2,6 +2,7 @@ package co.cambridge.colegio.Controller;
 
 import co.cambridge.colegio.Model.DTO.OficinaDTO;
 import co.cambridge.colegio.Service.OficinaService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/oficinas")
+@Tag(name = "Oficinas", description = "Operaciones relacionadas con oficinas")
 public class OficinaController {
 
     private final OficinaService oficinaService;

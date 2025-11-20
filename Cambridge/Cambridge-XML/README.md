@@ -154,15 +154,11 @@ Se recomienda explorar el código de `main.py` para entender:
 
 ---
 
-## 🤝 CONTRIBUIR
+## 📊 Diagrama del árbol XML
 
-Las contribuciones son bienvenidas. Para contribuir:
+![Diagrama de árbol XML Colegio](arbol_xml_colegio.png)
 
-1. Haz un fork del repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Haz commit de tus cambios (`git commit -am 'Agrega nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
+
 
 ---
 

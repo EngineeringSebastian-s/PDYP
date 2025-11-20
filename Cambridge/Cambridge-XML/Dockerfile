@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ .
 
 # Exponemos el puerto 5000
-EXPOSE 5000
+EXPOSE 8094
 
 # Comando para ejecutar la aplicación
 # IMPORTANTE: Ver nota abajo sobre el host 0.0.0.0

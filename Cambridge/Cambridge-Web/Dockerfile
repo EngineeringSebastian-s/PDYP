@@ -34,7 +34,7 @@ RUN npm install -g serve
 COPY --from=build /app/dist ./dist
 
 # Exponer el puerto 5173 (Por defecto de Vite/Serve en este config)
-EXPOSE 5174
+EXPOSE 5173
 
 # Comando por defecto: servir la carpeta dist en el puerto 5173
 CMD ["serve", "-s", "dist", "-l", "5173"]

@@ -1,0 +1,10 @@
+services:
+  web:
+    container_name: cambridge-xml
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8094:8094"
+
+    restart: always

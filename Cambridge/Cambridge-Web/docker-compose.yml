@@ -1,0 +1,10 @@
+services:
+  web:
+    container_name: cambridge-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5174:5173"
+
+    restart: always

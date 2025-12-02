@@ -3,6 +3,7 @@ package co.cambridge.colegio.Controller;
 import co.cambridge.colegio.Model.DTO.EmpleadoCreateDTO;
 import co.cambridge.colegio.Model.DTO.EmpleadoDTO;
 import co.cambridge.colegio.Service.EmpleadoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/empleados")
+@Tag(name = "Empleados", description = "Operaciones relacionadas con empleados")
 public class EmpleadoController {
 
     private final EmpleadoService empleadoService;

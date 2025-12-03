@@ -25,7 +25,7 @@ def main():
         time.sleep(2)
 
         # 2. Iniciar 3 Clientes
-        nombres = ["Sebastian", "Maria", "Carlos"]
+        nombres = ["Sebastian", "Esteban", "Profesor"]
 
         for nombre in nombres:
             print(f"Lanzando Cliente para {nombre}...")

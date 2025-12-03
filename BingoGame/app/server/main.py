@@ -101,10 +101,14 @@ class BingoServer:
             except:
                 pass
         elif msg.startswith("BINGO"):
-            if self.check_bingo(player) and not self.winner:
-                self.winner = player
-                self.gui_log(f"*** GANADOR: {player.name} ***")
-                self.end_game(f"Ganador:{player.name}")
+            self.gui_log(f"¡{player.name} canta BINGO! Verificando...")
+            if self.winner is None:
+                if self.check_bingo(player):
+                    self.winner = player
+                    self.gui_log(f"*** GANADOR: {player.name} ***")
+                    self.end_game(f"Ganador:{player.name}")
+                else:
+                    self.gui_log(f"BINGO FALSO de {player.name}")
 
     def generate_card(self):
         cols = [random.sample(list(COLUMN_RANGES[c]), 5) for c in range(5)]

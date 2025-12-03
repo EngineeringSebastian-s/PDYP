@@ -97,9 +97,7 @@ class BingoServer:
         if msg.startswith("HIT "):
             try:
                 r, c = map(int, msg[4:].split(","))
-                num = player.card[r][c]
-                if num in self.drawn_numbers_set:
-                    player.marked[r][c] = True
+                self.validate_hit(player, r, c)
             except:
                 pass
         elif msg.startswith("BINGO"):
@@ -156,6 +154,17 @@ class BingoServer:
             self.server_socket.close()
         except:
             pass
+
+    def validate_hit(self, player, r, c):
+        if 0 <= r < 5 and 0 <= c < 5:
+            num = player.card[r][c]
+
+            # Si el número ya salió, permitir marcar
+            if num in self.drawn_numbers_set:
+                player.marked[r][c] = True
+            else:
+                # Aviso en el servidor
+                self.gui_log(f"ALERTA: {player.name} intentó marcar {num} sin haber salido.")
 
 
 class ServerGUI:

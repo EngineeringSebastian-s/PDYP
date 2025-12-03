@@ -7,13 +7,14 @@ HOST = "127.0.0.1"
 PORT = 5000
 
 COLORS = {
-    "B": "#E74C3C", # Rojo
-    "I": "#3498DB", # Azul
-    "N": "#F1C40F", # Amarillo
-    "G": "#2ECC71", # Verde
+    "B": "#E74C3C",  # Rojo
+    "I": "#3498DB",  # Azul
+    "N": "#F1C40F",  # Amarillo
+    "G": "#2ECC71",  # Verde
     "O": "#E67E22"  # Naranja
 }
 BG_APP = "#ECF0F1"
+
 
 class BingoClient:
     def __init__(self, master):
@@ -38,9 +39,9 @@ class BingoClient:
         # Header Info
         top_frame = tk.Frame(self.master, bg=BG_APP)
         top_frame.pack(pady=15)
-        
+
         tk.Label(top_frame, text="ÚLTIMA BALOTA:", font=("Helvetica", 10), bg=BG_APP).pack()
-        self.lbl_call = tk.Label(top_frame, textvariable=self.current_call_var, 
+        self.lbl_call = tk.Label(top_frame, textvariable=self.current_call_var,
                                  font=("Helvetica", 24, "bold"), bg="white", width=8, relief="solid")
         self.lbl_call.pack(pady=5)
 
@@ -50,7 +51,7 @@ class BingoClient:
 
         headers = ["B", "I", "N", "G", "O"]
         for i, h in enumerate(headers):
-            lbl = tk.Label(grid_frame, text=h, bg=COLORS[h], fg="white", 
+            lbl = tk.Label(grid_frame, text=h, bg=COLORS[h], fg="white",
                            font=("Arial", 14, "bold"), width=4, height=1)
             lbl.grid(row=0, column=i, sticky="nsew", padx=1, pady=1)
 
@@ -61,7 +62,7 @@ class BingoClient:
                 btn = tk.Button(grid_frame, text="", font=("Arial", 12, "bold"),
                                 width=4, height=2, bg="white", state=tk.DISABLED,
                                 command=lambda rr=r, cc=c: self.mark_spot(rr, cc))
-                btn.grid(row=r+1, column=c, padx=1, pady=1)
+                btn.grid(row=r + 1, column=c, padx=1, pady=1)
                 row_btns.append(btn)
             self.buttons.append(row_btns)
 
@@ -86,13 +87,13 @@ class BingoClient:
         try:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.sock.connect((HOST, PORT))
-            
+
             # Enviar JOIN
             self.sock.sendall(f"JOIN {self.player_name}\n".encode("utf-8"))
-            
+
             # Recibir respuesta inicial (CARD)
             data = self.sock.recv(4096).decode("utf-8").strip()
-            
+
             if data.startswith("CARD "):
                 self.setup_card(data[5:])
                 threading.Thread(target=self.listen_server, daemon=True).start()
@@ -113,15 +114,15 @@ class BingoClient:
         self.card = []
         for r_str in rows:
             self.card.append([int(x) for x in r_str.split(",")])
-        
-        self.marked = [[False]*5 for _ in range(5)]
-        
+
+        self.marked = [[False] * 5 for _ in range(5)]
+
         # Llenar UI
         for r in range(5):
             for c in range(5):
                 num = self.card[r][c]
                 self.buttons[r][c].config(text=str(num), state=tk.NORMAL)
-        
+
         self.btn_bingo.config(state=tk.NORMAL)
 
     def mark_spot(self, r, c):
@@ -129,9 +130,9 @@ class BingoClient:
         current_state = self.marked[r][c]
         new_state = not current_state
         self.marked[r][c] = new_state
-        
+
         if new_state:
-            self.buttons[r][c].config(bg="#FFF176") # Amarillo claro al marcar
+            self.buttons[r][c].config(bg="#FFF176")  # Amarillo claro al marcar
             # Enviar al servidor para validación
             self.send_msg(f"HIT {r},{c}")
         else:
@@ -141,7 +142,8 @@ class BingoClient:
         if self.sock:
             try:
                 self.sock.sendall(f"{msg}\n".encode("utf-8"))
-            except: pass
+            except:
+                pass
 
     def send_bingo(self):
         self.send_msg(f"BINGO {self.player_name}")
@@ -161,20 +163,21 @@ class BingoClient:
                         self.process_server_msg(msg)
             except:
                 break
-        
+
     def process_server_msg(self, msg):
         if msg.startswith("BALL "):
             # BALL B,15
             parts = msg[5:].split(",")
             letter, number = parts[0], parts[1]
             self.master.after(0, lambda: self.current_call_var.set(f"{letter} - {number}"))
-        
+
 
         elif msg.startswith("END "):
             reason = msg[4:]
             self.master.after(0, lambda: messagebox.showinfo("Juego Terminado", reason))
             self.running = False
             self.master.after(0, self.master.quit)
+
 
 if __name__ == "__main__":
     root = tk.Tk()

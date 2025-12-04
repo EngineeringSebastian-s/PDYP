@@ -1,14 +1,14 @@
-import socket
-import threading
+import os
 import random
+import socket
+import sys
+import threading
 import tkinter as tk
 from tkinter import messagebox
-import sys
-import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-from app.config import HOST, PORT, BG_COLOR, FG_COLOR, ACCENT_COLOR, HIGHLIGHT_COLOR, COLUMN_RANGES, BINGO_COLORS
+from app.config import HOST, PORT, BG_COLOR, FG_COLOR, HIGHLIGHT_COLOR, COLUMN_RANGES, BINGO_COLORS
 
 
 class Player:
@@ -65,7 +65,6 @@ class BingoServer:
             player = Player(name, conn, addr)
             player.card = self.generate_card()
 
-            # Enviar cartón
             card_str = self.card_to_string(player.card)
             conn.sendall(f"CARD {card_str}\n".encode("utf-8"))
 
@@ -119,7 +118,6 @@ class BingoServer:
 
     def check_bingo(self, player):
         m = player.marked
-        # Filas, Columnas, Diagonales
         if any(all(row) for row in m): return True
         if any(all(m[r][c] for r in range(5)) for c in range(5)): return True
         if all(m[i][i] for i in range(5)): return True
@@ -149,7 +147,8 @@ class BingoServer:
         with self.clients_lock:
             for p in self.clients:
                 try:
-                    p.conn.sendall(msg.encode("utf-8")); p.conn.close()
+                    p.conn.sendall(msg.encode("utf-8"));
+                    p.conn.close()
                 except:
                     pass
             self.clients.clear()

@@ -1,10 +1,10 @@
+import os
+import random
 import socket
+import sys
 import threading
 import tkinter as tk
 from tkinter import messagebox
-import sys
-import os
-import random
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from app.config import HOST, PORT, BINGO_COLORS
@@ -25,12 +25,11 @@ class BingoClient:
         if self.player_name:
             self.connect_server()
         else:
-            # Si no hay nombre automático, preguntar (lógica antigua)
             pass
 
     def build_ui(self):
         frame = tk.Frame(self.master)
-        frame.pack(pady=10, padx=10)
+        frame.pack(pady=30, padx=30)
 
         for i, h in enumerate(["B", "I", "N", "G", "O"]):
             tk.Label(frame, text=h, bg=BINGO_COLORS[h], width=4).grid(row=0, column=i)
@@ -86,17 +85,13 @@ class BingoClient:
         self.btn_bingo.config(state=tk.NORMAL)
 
     def mark(self, r, c):
-        # Toggle marcado
         self.marked[r][c] = not self.marked[r][c]
         color = "#FFF176" if self.marked[r][c] else "white"
         self.buttons[r][c].config(bg=color)
-
-        # Enviar al servidor (si socket válido)
         try:
             if self.sock:
                 self.sock.sendall(f"HIT {r},{c}\n".encode())
         except Exception:
-            # Ignorar errores de envío (por simplicidad)
             pass
 
     def send_bingo(self):
@@ -118,27 +113,18 @@ class BingoClient:
 
     def on_ball(self, letter, number):
         if number is None:
-            # Mostrar solo la letra si no hay número (caso improbable)
             self.lbl_info.config(text=f"Balota: {letter or '--'}")
             return
 
-        # Actualizar etiqueta de información
         self.lbl_info.config(text=f"Balota: {letter}-{number}")
 
-        # Buscar número en el cartón y marcar si existe y no está marcado
         pos = self.find_number(number)
         if pos:
             r, c = pos
             if not self.marked[r][c]:
-                # Llamamos a mark (está diseñado para correr en hilo UI)
                 self.mark(r, c)
 
     def listen(self):
-        """
-        Escucha mensajes del servidor. Asumimos que las balotas llegan exactamente en formato:
-        'BALL B,9' (con coma entre letra y número). No se 'parsea' en forma compleja,
-        solo se separa por la coma.
-        """
         buff = ""
         while self.running:
             try:
@@ -153,19 +139,15 @@ class BingoClient:
                         continue
 
                     if msg.startswith("BALL "):
-                        # Aquí sabemos que el payload es "B,9"
-                        payload = msg[5:].strip()  # e.g. "B,9"
-                        # Separar por coma -> letter, num_str
+                        payload = msg[5:].strip()
                         try:
                             letter_part, num_part = payload.split(",", 1)
                             letter = letter_part.strip().upper()
                             number = int(num_part.strip())
                         except Exception:
-                            # Si por alguna razón no se puede convertir, ignorar la balota
                             letter = None
                             number = None
 
-                        # Programar la actualización en el hilo principal de Tkinter
                         try:
                             self.master.after(0, lambda L=letter, N=number: self.on_ball(L, N))
                         except Exception:
@@ -177,6 +159,7 @@ class BingoClient:
 
                     elif msg.startswith("END "):
                         reason = msg[4:].strip()
+
                         def end_proc():
                             messagebox.showinfo("Fin", reason)
                             self.running = False
@@ -184,6 +167,7 @@ class BingoClient:
                                 self.master.quit()
                             except:
                                 pass
+
                         try:
                             self.master.after(0, end_proc)
                         except:
@@ -191,7 +175,6 @@ class BingoClient:
             except Exception:
                 break
 
-        # Cierre limpio cuando se sale del bucle
         try:
             if self.sock:
                 self.sock.close()

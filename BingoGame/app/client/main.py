@@ -29,7 +29,7 @@ class BingoClient:
 
     def build_ui(self):
         frame = tk.Frame(self.master)
-        frame.pack(pady=30, padx=30)
+        frame.pack(pady=10, padx=10)
 
         for i, h in enumerate(["B", "I", "N", "G", "O"]):
             tk.Label(frame, text=h, bg=BINGO_COLORS[h], width=4).grid(row=0, column=i)
@@ -185,5 +185,15 @@ class BingoClient:
 if __name__ == "__main__":
     name = sys.argv[1] if len(sys.argv) > 1 else f"Jugador_{random.randint(100, 999)}"
     root = tk.Tk()
+
+    if len(sys.argv) >= 6:
+        x = sys.argv[2]
+        y = sys.argv[3]
+        width = sys.argv[4]
+        height = sys.argv[5]
+        root.geometry(f"{width}x{height}+{x}+{y}")
+    else:
+        root.geometry("500x400+50+50")
+
     app = BingoClient(root, auto_name=name)
     root.mainloop()
